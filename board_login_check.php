@@ -3,8 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$id = $_POST['id'];
-$pw = $_POST['passwd'];
+$id = addslashes($_POST['id']);
+$pw = addslashes($_POST['passwd']);
 
 $conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
 if(!$conn) echo "DB not connect";
@@ -18,6 +18,11 @@ while($row = mysqli_fetch_array($result)){
 	//echo $userpw;
 
 	if($userpw == $pw){
+		$id = stripslashes($id);
+
+		session_start();
+		$_SESSION['session_id'] = $id;
+
 		echo "<script> alert('Login Success'); </script>";
 		echo "<script> window.location.replace('./board_login_success.php');  </script>";
 	}

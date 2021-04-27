@@ -4,5 +4,6 @@
 </head>
 <body>
 <p id='result'> Success </p>
+<?php session_start(); echo $_SESSION['session_id']; ?>
 </body>
 </html>

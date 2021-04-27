@@ -1,11 +1,3 @@
-<html>
-<head>
-<title>Board</title>
-</head>
-<body>
-	<p>Board
 <?php
-
+echo "to be continue";
 ?>
-</body>
-<html>

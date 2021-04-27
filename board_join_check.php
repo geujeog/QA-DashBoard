@@ -6,6 +6,19 @@
 $id = $_POST['id'];
 $pw = $_POST['passwd'];
 
+
+// Shield - BOF(maybe...)
+if(strlen($id) > 25 || strlen($pw) > 25){
+	echo "<script> alert('Please write less than 25 characters.'); </script>";
+	echo "<script> window.location.replace('./board_join.php');  </script>";
+}
+
+// Shield - SQL Injection
+$id = addslashes(preg_replace("/\s+/", "", $id));
+$pw = addslashes(preg_replace("/\s+/", "", $pw));
+
+
+
 $conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
 if(!$conn) echo "DB not connect";
 
@@ -31,7 +44,7 @@ if(strlen($pw) < 9){
 }
 
 
-if(!preg_match("/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/", $pw)){
+if(!preg_match("/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/", $pw)){
 	echo "<script> alert('Password must contain at least one English, number and special character.'); </script>";
 	echo "<script> window.location.replace('./board_join_fail.php'); </script>";
 }
