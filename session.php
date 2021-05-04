@@ -1,20 +1,22 @@
-<html>
-<head></head>
-<body>
-<div style='display:none;'>
-	<form action='board_result.php' id='empty_form' method='POST'>
-		<input type="text" name="board_number" value='-1'>
-	</form>
-</div>
-</body>
-</html>
-
 <?php
 session_start();
+$session = $_SESSION['session_id'];
 
 if(!isset($_SESSION['session_id'])){
-	echo "<script> alert('Please log in.'); </script>";
-	echo "<script> document.getElementById('empty_form').submit(); </script>";
+	echo "<script> alert('Please login.'); </script>";
+?>
+
+	<html>
+	<head>
+		<title>Board</title>
+	</head>
+	<body>
+		<div id='number'> -1 </div>
+	</body>
+	</html>
+
+<?php
+	exit();
 }
 
 ?>
