@@ -4,7 +4,7 @@ include "session.php";
 $number = $_GET['number'];
 $flag = 0;
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 $query = "SELECT * FROM board_list WHERE num='$number';";

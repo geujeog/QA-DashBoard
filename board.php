@@ -1,7 +1,7 @@
 <?php
 include "session.php";
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 $category = $_GET['category'];

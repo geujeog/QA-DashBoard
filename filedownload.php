@@ -5,7 +5,7 @@ include "session.php";
 $number = $_GET['num'];
 $file_upload = $_GET['file'];
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 $query = "SELECT file_save FROM file_list WHERE board_num=$number AND file_upload='$file_upload';";

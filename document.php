@@ -7,7 +7,7 @@ $comment = $_POST['content'];
 $flag = 0;
 $show = 0;
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 if($flag != -1){

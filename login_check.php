@@ -6,7 +6,7 @@ $pw = $_POST['passwd'];
 //$id = addslashes($_POST['id']);
 //$pw = addslashes($_POST['passwd']);
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 // ID Check

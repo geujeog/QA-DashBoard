@@ -18,7 +18,7 @@ $id = preg_replace("/\s+/", "", $id);
 $pw = preg_replace("/\s+/", "", $pw);
 
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 // ID Check

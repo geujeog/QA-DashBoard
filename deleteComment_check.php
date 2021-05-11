@@ -5,7 +5,7 @@ $com_num = $_POST['number'];
 
 $flag = 0;
 
-$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
+$conn = mysqli_connect("localhost", "root", "(password)", "board");
 if(!$conn) echo "DB not connect";
 
 $query = "SELECT * FROM comment_list WHERE num='$com_num';";
