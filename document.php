@@ -20,6 +20,8 @@ if($result){
 		$user = $row['user'];
 		$secret = $row['secret'];
 		$passwd = $row['passwd'];
+	}else{
+		$flag = -1;
 	}
 }else{
 	$flag = -1;
@@ -67,7 +69,6 @@ if($flag == 0 && $show == 1){
 
 	if(!empty($comment)){
 		$time = date("Y-m-d H:i:s");
-		echo 'session!!!!!'.$session;
 		$query = "INSERT INTO comment_list(board_num, user, comment, time) VALUES ('$number', '$session', '$comment', '$time');";
 		$result = mysqli_query($conn, $query);
 
@@ -95,15 +96,18 @@ if($flag == 0 && $show == 1){
 		if(file_exists($tmp_file)){
 
 ?>
-	<!--<div id='file_<?php echo $file_upload; ?>'><?php echo $file_upload; ?></div>-->
 
-<form action='filedownload.php' method='post'>
+<form action='filedownload.php' method='GET'>
+<div style='display:none'>
 	<input type='hidden' value='<?php echo $number; ?>' name='num' />
 	<input type='hidden' value='<?php echo $file_upload; ?>' name='file'>
-	<span><?php echo $file_upload;?></span> <input type='submit' value='Download'/>
+</div>
+	<span id='file_<?php echo $file_upload; ?>'><?php echo $file_upload;?></span> <input type='submit' value='Download'/>
 </form>
 
 <?
+		}else{
+			$flag = -1;
 		}
 	}
 

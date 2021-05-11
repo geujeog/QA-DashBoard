@@ -12,9 +12,10 @@ if(strlen($id) > 25 || strlen($pw) > 25){
 }
 
 // Shield - SQL Injection
-$id = addslashes(preg_replace("/\s+/", "", $id));
-$pw = addslashes(preg_replace("/\s+/", "", $pw));
-
+//$id = addslashes(preg_replace("/\s+/", "", $id));
+//$pw = addslashes(preg_replace("/\s+/", "", $pw));
+$id = preg_replace("/\s+/", "", $id);
+$pw = preg_replace("/\s+/", "", $pw);
 
 
 $conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");

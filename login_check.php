@@ -1,8 +1,10 @@
 <?php
 
 $flag = 0;
-$id = addslashes($_POST['id']);
-$pw = addslashes($_POST['passwd']);
+$id = $_POST['id'];
+$pw = $_POST['passwd'];
+//$id = addslashes($_POST['id']);
+//$pw = addslashes($_POST['passwd']);
 
 $conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
 if(!$conn) echo "DB not connect";
@@ -15,11 +17,11 @@ if(!$result){
 }
 
 if($flag == 0){
-	while($row = mysqli_fetch_array($result)){
+	if($row = mysqli_fetch_array($result)){
 		$userpw = $row['pw'];
 
 		if($userpw == $pw){
-			$id = stripslashes($id);
+			//$id = stripslashes($id);
 
 			session_start();
 			$_SESSION['session_id'] = $id;
@@ -27,6 +29,8 @@ if($flag == 0){
 		else{
 			$flag = 1;
 		}
+	}else{
+		$flag = -1;
 	}
 }
 

@@ -10,11 +10,21 @@ $time = date("Y-m-d H:i:s");
 $secret = $_POST['secret'];
 $passwd = preg_replace("/\s+/", "", $_POST['passwd']);
 
+//echo "title: ".$title."<br>";
+//echo "content: ".$content."<br>";
+
+if(!empty($_FILES['file']['name'][0])){
+	$total = count($_FILES['file']['name']);
+}
+else{
+	$total = 0;
+}
+
 
 if(!empty($secret) && $secret == "true"){
 
 	if(!empty($passwd)){
-		if(!preg_match("/[0-9]{2}/", $passwd)){
+		if(!preg_match("/[0-9]{4}/", $passwd)){
 			$num = -1;
 		}
 	}else{
@@ -31,7 +41,7 @@ else{
 
 #if open
 if($num != -1){
-	
+
 $conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
 if(!$conn) echo "DB not connect";
 
@@ -55,7 +65,9 @@ else{
 		$num = -1;
 	}
 
-	include "fileupload.php";
+	if($num != -1){
+		include "fileupload.php";
+	}
 }
 
 } #if close
