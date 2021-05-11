@@ -13,7 +13,7 @@ $passwd = preg_replace("/\s+/", "", $_POST['passwd']);
 //echo "title: ".$title."<br>";
 //echo "content: ".$content."<br>";
 
-if(!empty($_FILES['file']['name'][0])){
+if(!empty($_FILES['file']) && !empty($_FILES['file']['name'][0])){
 	$total = count($_FILES['file']['name']);
 }
 else{
@@ -42,7 +42,7 @@ else{
 #if open
 if($num != -1){
 
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
+$conn = mysqli_connect("localhost", "root", "spdlxm10301", "board");
 if(!$conn) echo "DB not connect";
 
 
