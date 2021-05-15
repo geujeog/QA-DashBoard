@@ -1,15 +1,15 @@
 <?php
+$flag = 0;
 include "session.php";
+include "db.php";
 
 $number = $_GET['number'];
 $input_passwd = $_POST['passwd'];
 $comment = $_POST['content'];
-$flag = 0;
 $show = 0;
 
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
 
+// echo("number: $number");
 if($flag != -1){
 $query = "SELECT * FROM board_list WHERE num='$number';";
 $result = mysqli_query($conn, $query);
@@ -27,6 +27,7 @@ if($result){
 	$flag = -1;
 }
 }
+// echo("flag: $flag");
 
 
 if($flag != -1){
@@ -42,8 +43,15 @@ if($flag != -1){
 <head>
 	<title>Document</title>
 </head>
+<style>
+body{
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}	
+</style>
 <body>
-
 	<form action='document.php?number=<?php echo $number; ?>' method='post'>
 	Password : <input type='password' name='passwd' >
 	<input type='hidden' name='content' value='<?php echo $comment;?>'>
@@ -78,11 +86,19 @@ if($flag == 0 && $show == 1){
 	}
 
 ?>
+	<br><br><br>
+	<div style='width: 500px; margin: 0 auto;'>
+	<h3 style='font-size:30px; text-align: center; border: 3px solid gold; border-radius:0.4em; margin: 0 auto; '>&nbsp; <?php echo $number; ?> &nbsp;</h3><br>
+	<div style='margin: 0 auto; font-size: 18px;'> TITLE | &nbsp;&nbsp;<span id='title' class='c' style='font-size: 20px;'><?php echo $title; ?></span></div><br>
+	<div style='margin: 0 auto; font-size: 18px;'> CONTENT | &nbsp;&nbsp;<span id='content' class='c' style='font-size: 20px; '><?php echo $content; ?></span></div><br>
+	<div style='margin: 0 auto; font-size: 17px;'> FILE | 
 
-	<div id='number'><?php echo $number; ?></div>
-	<div id='title'><?php echo $title; ?></div>
-	<div id='content'><?php echo $content; ?></div>
-
+<script>
+	function download(formId) {
+		var form = document.getElementById(formId);
+		form.submit();
+	}
+</script>
 <?php
 	$query = "SELECT * from file_list where board_num=$number;";
 	$result = mysqli_query($conn, $query);
@@ -97,13 +113,13 @@ if($flag == 0 && $show == 1){
 
 ?>
 
-<form action='filedownload.php' method='GET'>
-<div style='display:none'>
-	<input type='hidden' value='<?php echo $number; ?>' name='num' />
-	<input type='hidden' value='<?php echo $file_upload; ?>' name='file'>
-</div>
-	<span id='file_<?php echo $file_upload; ?>'><?php echo $file_upload;?></span> <input type='submit' value='Download'/>
-</form>
+	<div style='display:none'>
+		<form id='form_<?php echo $file_upload; ?>' action='fileDownload.php' method='GET'>
+				<input type='hidden' value='<?php echo $number; ?>' name='number' />
+				<input type='hidden' value='<?php echo $file_upload; ?>' name='file'>
+		</form>
+	</div>
+	<a href="javascript:download('form_<?php echo $file_upload; ?>');"><span id='file_<?php echo $file_upload; ?>'><?php echo $file_upload;?></span></a>
 
 <?
 		}else{
@@ -115,7 +131,8 @@ if($flag == 0 && $show == 1){
 	if($flag != -1){
 		if($session == $user){
 ?>
-
+	<br><br>
+	<div>
 	<form method='POST'>
 		<div style='display:none;'><input name='number' value='<?php echo $number;?>' > </div>
 		<div>
@@ -123,11 +140,13 @@ if($flag == 0 && $show == 1){
 			<button type="submit" formaction='deleteDocument_check.php'>Delete</button>
 		</div>
 	</form>
+	</div>
 
 <?php
 		}
 	}
 ?>
+	</div>
 <br><hr><br>
 
 	<form action='document.php?number=<?php echo $number; ?>' method='post'>
@@ -165,7 +184,6 @@ if($flag == 0 && $show == 1){
 			<button type="submit" formaction='deleteComment_check.php'>Delete</button>
 		</div>
 	</form>
-
 <?
 		}
 
@@ -173,11 +191,10 @@ if($flag == 0 && $show == 1){
 	}
 	}
 }
-
 if($flag == -1){
 	include "fail.php";
 }
 ?>
-
+</div>
 </body>
 </html>

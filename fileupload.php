@@ -1,12 +1,6 @@
 <?php
-//error_reporting( E_ALL );
-//ini_set( "display_errors", 1 );
 
 $prevPage = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
-
-if($prevPage != '/board/writeDocument.php'){
-	$num = -1;
-}
 
 if($total != 0){
 	if($num != -1){

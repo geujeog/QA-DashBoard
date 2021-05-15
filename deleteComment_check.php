@@ -1,12 +1,10 @@
 <?php
-include "session.php";
-
-$com_num = $_POST['number'];
-
 $flag = 0;
 
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
+include "session.php";
+include "db.php";
+
+$com_num = $_POST['number'];
 
 $query = "SELECT * FROM comment_list WHERE num='$com_num';";
 $result = mysqli_query($conn, $query);

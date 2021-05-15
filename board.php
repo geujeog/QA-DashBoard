@@ -1,8 +1,6 @@
 <?php
 include "session.php";
-
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
+include "db.php";
 
 $category = $_GET['category'];
 $search = $_GET['search'];
@@ -24,20 +22,32 @@ $result = mysqli_query($conn, $query);
 <head>
 	<title>Board</title>
 </head>
-<body>
 
-<form action='writeDocument.php'>
+<style>
+body{
+width: 500px;
+margin: 0 auto;
+}
+
+a{ text-decoration: none; }
+</style>
+
+<body>
+<br><br>
+<h2 style='font-size: 30px; text-align: center; border: 3px solid gold; border-radius:0.4em; '>Board</h2>
+<form action='writeDocument.php' style='aling: right;'>
 	<input type='submit' value='write'>
 </form>
 
-
 <?php
+$pp = 0;
 while($row = mysqli_fetch_array($result)){
+	$pp++;
 	$number = $row['num'];
 	$title = $row['title'];
 ?>
 
-	<a id='title_<?php echo $number; ?>' href='document.php?number=<?php echo $number; ?>'><?php echo $title; ?></a>
+	<span><?php echo $pp; ?></span> &nbsp;&nbsp;&nbsp;<a id='title_<?php echo $number; ?>' href='document.php?number=<?php echo $number; ?>'><?php echo $title; ?></a>
 	<hr>
 <?php
 

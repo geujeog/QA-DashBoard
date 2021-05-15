@@ -1,13 +1,9 @@
 <?php
+include "db.php";
 
 $flag = 0;
 $id = $_POST['id'];
 $pw = $_POST['passwd'];
-//$id = addslashes($_POST['id']);
-//$pw = addslashes($_POST['passwd']);
-
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
 
 // ID Check
 $query = "SELECT * FROM board_member WHERE ID='$id';";
@@ -21,8 +17,6 @@ if($flag == 0){
 		$userpw = $row['pw'];
 
 		if($userpw == $pw){
-			//$id = stripslashes($id);
-
 			session_start();
 			$_SESSION['session_id'] = $id;
 		}

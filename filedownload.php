@@ -1,23 +1,20 @@
 <?php
 
 include "session.php";
-
-$number = $_GET['num'];
+include "db.php";
+$number = $_GET['number'];
 $file_upload = $_GET['file'];
-
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
 
 $query = "SELECT file_save FROM file_list WHERE board_num=$number AND file_upload='$file_upload';";
 $result = mysqli_query($conn, $query);
-echo $query."<br>";
+// echo $query."<br>";
 
 if($result){
 
 	if($row = mysqli_fetch_array($result)){
 		$file_save = $row['file_save'];
 	}else{
-		echo '-1';
+		header("HTTP/2.0 404 Not Found");
 		exit();
 	}
 

@@ -1,4 +1,5 @@
 <?php
+include 'db.php';
 
 $flag = 0;
 $id = $_POST['id'];
@@ -11,15 +12,8 @@ if(strlen($id) > 25 || strlen($pw) > 25){
 	echo "<script> window.location.replace('./board_join.php');  </script>";
 }
 
-// Shield - SQL Injection
-//$id = addslashes(preg_replace("/\s+/", "", $id));
-//$pw = addslashes(preg_replace("/\s+/", "", $pw));
 $id = preg_replace("/\s+/", "", $id);
 $pw = preg_replace("/\s+/", "", $pw);
-
-
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
 
 // ID Check
 $query = "SELECT id FROM board_member WHERE ID='$id';";

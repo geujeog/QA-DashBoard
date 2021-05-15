@@ -13,24 +13,11 @@ body{
 </style>
 </head>
 <body>
-	<div style='font-size:30px;'>Main Page</div><br>
-
 	<div>
-		<div style='font-size:20px;'><a href="./signUp.php">JOIN</a><div>
-		<br>
-		<div style='font-size:20px;'><a href="./login.php">LOGIN</a></div>
+	<h3 style='font-size:30px; width: 500px; text-align: center; border: 3px solid gold; border-radius:0.4em; '>&nbsp; Main Page &nbsp;</h3>
+	<br><center><a href='./signUp.php' style='font-size:20px;'> JOIN </a></center>
+	<br><center><a href='./login.php' style='font-size:20px;'> LOGIN </a></center>
+	<br><center><a href='./board.php' style='font-size:20px;'> BOARD </a></center>
 	</div>
-
-<?php
-	session_start();
-	$session = $_SESSION['session_id'];
-
-	if(isset($session)){
-?>
-	<a href='./board.php'>BOARD</a>
-<?php
-	}
-?>
-
 </body>
 </html>

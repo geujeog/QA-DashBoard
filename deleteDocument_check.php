@@ -1,12 +1,10 @@
 <?php
-include "session.php";
-
-$number = $_POST['number'];
-
 $flag = 0;
 
-$conn = mysqli_connect("localhost", "root", "(password)", "board");
-if(!$conn) echo "DB not connect";
+include "session.php";
+include "db.php";
+
+$number = $_POST['number'];
 
 $query = "SELECT * FROM board_list WHERE num='$number';";
 $result = mysqli_query($conn, $query);
